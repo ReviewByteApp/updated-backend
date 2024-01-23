@@ -38,15 +38,14 @@ router.get(
  *
  *
  * @apiSuccess {Object[]} review reviewObject
- * @apiSuccess {String} review.title  title of the review.
- * @apiSuccess {String} review.description  description about review.
- * @apiSuccess {Number} review.like  like about review.
- *  @apiSuccess {Number} review.rate  rate about review.
- * @apiSuccess {Date} review.date Date of review
- * @apiSuccess {Date} review.createdAt Timestamp when the Review was created.
- * @apiSuccess {Date} review.updatedAt Timestamp when the Review was last updated (default is null for initial creation).
- * @apiSuccess {ObjectId} review.admin admin ID associated with the review.
- * @apiSuccess {ObjectId} review.customer customer ID associated with the review.
+ * @apiBody {String} review.title  title of the review.
+ * @apiBody {String} review.description  description about review.
+
+ * @apiBody {Date} review.date Date of review
+
+ * @apiBody {ObjectId} review.admin admin ID associated with the review.
+ * @apiBody {ObjectId} review.customer customer ID associated with the review.
+ * @apiSuccess {title} message review created
  */
 
 router.post(

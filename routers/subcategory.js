@@ -40,9 +40,10 @@ router.get(
  *
  *
  * @apiSuccess {Object[]} subcategory subcategoryObject
- * @apiSuccess {String} subcategory.name name of subcategory
- * @apiSuccess {String} subcategory.icon  icon of subcategory
- * @apiSuccess {ObjectId} subcategory.category category ID associated with the category.
+ * @apiBody {String} subcategory.name name of subcategory
+ * @apiBody {String} subcategory.icon  icon of subcategory
+ * @apiBody {ObjectId} subcategory.category category ID associated with the category.
+ * @apiSuccess {String} message subcategory created
  */
 
 router.post(

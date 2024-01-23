@@ -46,13 +46,14 @@ router.get(
  *
  *
  * @apiSuccess {Object[]} customer postObject
- * @apiSuccess {String} customer.name  name of the customer.
- * @apiSuccess {String} customer.country  country of the customer
- * @apiSuccess {String} customer.city city of customer
- * @apiSuccess {String} customer.profilePicture  profilePicture of the customer.
- *@apiSuccess {String} customer.email  email of the customer.
- * @apiSuccess {Number} customer.reviewCount reviewCount of the customer.
- * @apiSuccess {String} customer.password  password of the customer.
+ * @apiBody {String} customer.name  name of the customer.
+ * @apiBody {String} customer.country  country of the customer
+ * @apiBody {String} customer.city city of customer
+ * @apiBody {String} customer.profilePicture  profilePicture of the customer.
+ *@apiBody {String} customer.email  email of the customer.
+ * @apiBody {Number} customer.reviewCount reviewCount of the customer.
+ * @apiBody {String} customer.password  password of the customer.
+ * @apiSuccess {String} customer created successfully
  */
 
 router.post(
@@ -97,9 +98,9 @@ router.post(
  *
  *@apiParam {objectId} id customer unique ID.
  *
- * @apiSuccess {Object[]} customer customerObject
- * @apiSuccess {String} customer.password  password of the customer.
- * @apiSuccess {String} customer.email  email of the customer.
+ * @apiBody {String} customer.password  password of the customer.
+ * @apiBody {String} customer.email  email of the customer.
+ * @apiSuccess {String} message customer password updated
  */
 
 router.put(
@@ -139,9 +140,11 @@ router.put(
  *@apiParam {objectId} id customer unique ID.
  *
  * @apiSuccess {Object[]} customer customerObject
- * @apiSuccess {String} customer.name name of the customer.
- * @apiSuccess {String} customer.country country of the customer.*@apiSuccess {String} customer.city city of the customer.
- * @apiSuccess {String} customer.profilePicture  profilePicture of the customer.
+ * @apiBody {String} customer.name name of the customer.
+ * @apiBody {String} customer.country country of the customer.
+ * *@apiBody {String} customer.city city of the customer.
+ * @apiBody {String} customer.profilePicture  profilePicture of the customer.
+ * @apiSuccess {String} message customer information updated
  */
 
 router.put(

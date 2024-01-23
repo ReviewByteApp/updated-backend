@@ -1,75 +1,50 @@
 const asyncMiddleware = require("../middleware/async");
 const express = require("express");
-const AdminContact = require("../models/AdminContact");
+
+const Admin = require("../models/Admin");
 
 const router = express.Router();
 router.use(express.json());
 
 /**
- * @api {get} /adminContact get company conatct
+ * @api {get} /admin/adminContact get company contact
  * @apiName GetAdminContact
- * @apiGroup adminContact
+ * @apiGroup Admin
 
  * @apiSuccess {Object[]} adminContact adminContactObject
  * @apiSuccess {String} adminContact.phoneNumber  phoneNumber of the company.
-
+ *@apiSuccess {String} adminContact.city  city of the company.
+  * @apiSuccess {String} adminContact.country country of the company.
   * @apiSuccess {String} adminContact.map  map of the company.
- * @apiSuccess {ObjectId} adminContact.adminId admin ID associated with the admin.
+
 
 
  */
 
 router.get(
-  "/",
+  "/adminContact",
   asyncMiddleware(async (req, res) => {
-    const adminContact = await AdminContact.find({});
+    const adminContact = await Admin.find({});
 
     res.status(200).send(adminContact);
   })
 );
 
 /**
- * @api {post} /adminContact create company conatct
- * @apiName CreateAdminContact
- * @apiGroup adminContact
-
- * @apiSuccess {Object[]} adminContact adminContactObject
- * @apiSuccess {String} adminContact.phoneNumber  phoneNumber of the company.
-
-  * @apiSuccess {String} adminContact.map  map of the company.
- * @apiSuccess {ObjectId} adminContact.adminId admin ID associated with the admin.
-
-
- */
-
-router.post(
-  "/",
-  asyncMiddleware(async (req, res) => {
-    const { phoneNumber, map, adminId } = req.body;
-
-    const adminContact = new AdminContact({
-      phoneNumber,
-
-      map,
-      adminId,
-    });
-    await adminContact.save();
-
-    res.status(200).send(adminContact);
-  })
-);
-
-/**
- * @api {put} /adminContact update company contact
+* @api {put} /admin/adminContact/:id update company contact
  * @apiName UpdateAdminContact
- * @apiGroup adminContact
-
- * @apiSuccess {Object[]} adminContact adminContactObject
- * @apiSuccess {String} adminContact.phoneNumber  phoneNumber of the company.
-
-  * @apiSuccess {String} adminContact.map  map of the company.
+ * @apiGroup Admin
+ * 
+ * @apiParam {objectId} id admin unique Id
 
 
+ * @apiBody {String} adminContact.phoneNumber  phoneNumber of the company.
+
+  * @apiBody {String} adminContact.map  map of the company.
+  * @apiBody {String} adminContact.country country of the company.
+  * @apiBody {String} adminContact.city city of the company.
+  * 
+  * @apiSuccess {String} message admin contact updated successfully
 
  */
 
@@ -77,12 +52,12 @@ router.put(
   "/:id",
 
   asyncMiddleware(async (req, res) => {
-    const { phoneNumber, map } = req.body;
+    const { phoneNumber, map, city, country } = req.body;
     const { id } = req.params;
 
-    let adminContact = await AdminContact.findByIdAndUpdate(
+    let adminContact = await Admin.findByIdAndUpdate(
       id,
-      { phoneNumber, map },
+      { phoneNumber, map, city, country },
       {
         new: true,
       }

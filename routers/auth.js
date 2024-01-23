@@ -18,7 +18,7 @@ router.use(express.json());
  *
  * @apiSuccess {Object[]} auth authObject
  * @apiSuccess {String} auth.token The JSON Web Token (JWT) for authentication.
- * @apiSuccess {String} auth.name The name of the admin user.
+ * @apiSuccess {String} auth.email The email of the admin user.
  */
 
 router.post(
@@ -39,7 +39,7 @@ router.post(
       expiresIn: "1h",
     });
 
-    res.status(200).send({ token, name: admin.name });
+    res.status(200).send({ token, email: admin.email });
   })
 );
 

@@ -12,17 +12,8 @@ router.use(express.json());
  * @api {get} /admin Request Admin information
  * @apiName GetAdmin
  * @apiGroup Admin
- * @apiSuccess {Object[]} admin adminObject
- * @apiSuccess {String} admin.name  name of the admin.
- * @apiSuccess {String} admin.password  password of the admin.
- * @apiSuccess {String} admin.email  email of the admin.
- * @apiSuccess {ObjectId} admin.category Category ID associated with the Admin.
- * @apiSuccess {ObjectId} admin.subcategory Subcategory ID associated with the Admin.
- * @apiSuccess {Number} admin.reviewCount Number of reviews for the Admin.
- * @apiSuccess {Number} admin.reviewScore Review score for the Admin.
- * @apiSuccess {Date} admin.createdAt Timestamp when the Admin was created.
- * @apiSuccess {Date} admin.updatedAt Timestamp when the Admin was last updated (default is null for initial creation).
- * @apiSuccess {String} admin.video  video of the admin.
+ * @apiSuccess {Object[]} admin fetch all admin attribute
+
  */
 
 router.get(
@@ -39,20 +30,15 @@ router.get(
  * @apiName CreateAdmin
  * @apiGroup Admin
  *
+ *@apiBody {String} name name of the admin
+ *@apiBody {String} password password of the admin
+ *@apiBody {String} email email of the admin
+ *@apiBody {String} category category of the admin
+ *@apiBody {String} country country of the admin
+ *@apiBody {String} city city of the admin
+ *@apiBody {String} subCategory subCategory of the admin
  *
- * @apiSuccess {Object[]} admin adminObject
- * @apiSuccess {String} admin.name  name of the admin.
- * @apiSuccess {String} admin.password  password of the admin.
- * @apiSuccess {String} admin.email  email of the admin.
- * @apiSuccess {String} admin.country  country of the admin.
- * @apiSuccess {String} admin.city  city of the admin.
- * @apiSuccess {ObjectId} admin.category Category ID associated with the Admin.
- * @apiSuccess {ObjectId} admin.subcategory Subcategory ID associated with the Admin.
- * @apiSuccess {Number} admin.reviewCount Number of reviews for the Admin.
- * @apiSuccess {Number} admin.reviewScore Review score for the Admin.
- * @apiSuccess {Date} admin.createdAt Timestamp when the Admin was created.
- * @apiSuccess {Date} admin.updatedAt Timestamp when the Admin was last updated (default is null for initial creation).
-
+ * @apiSuccess {String} message successfully admin created.
  */
 
 router.post(
@@ -68,9 +54,6 @@ router.post(
       city,
 
       subCategory,
-
-      reviewCount,
-      reviewScore,
     } = req.body;
 
     let admin = await Admin.findOne({ email });
@@ -85,51 +68,13 @@ router.post(
       city,
 
       subCategory,
-
-      reviewCount,
-      reviewScore,
     });
 
     await admin.save();
 
-    admin = await Admin.findById(admin._id);
+    // admin = await Admin.findById(admin._id);
 
-    res.status(200).send(admin);
-  })
-);
-
-/**
- * @api {put} /admin/:id update admin
- * @apiName UpdateAdmin
- * @apiGroup Admin
- *
- *@apiParam {objectId} id admin unique ID.
- *
- * @apiSuccess {Object[]} admin adminObject
- * @apiSuccess {String} admin.name  name of the admin.
- * @apiSuccess {String} admin.password  password of the admin.
- * @apiSuccess {String} admin.email  email of the admin.
- * @apiSuccess {String} admin.country  country of the admin.
- * @apiSuccess {String} admin.city  city of the admin.
-
- */
-
-router.put(
-  "/:id",
-
-  asyncMiddleware(async (req, res) => {
-    const { id } = req.params;
-    const { name, category, country, city, subCategory } = req.body;
-
-    let admin = await Admin.findByIdAndUpdate(
-      id,
-      { name, category, country, city, subCategory },
-      { new: true }
-    );
-
-    if (!admin) return res.status(404).send("Admin not found with this id");
-
-    res.status(200).send(admin);
+    res.status(200).send("Admin successfully created!");
   })
 );
 
@@ -139,10 +84,9 @@ router.put(
  * @apiGroup Admin
  *
  *@apiParam {objectId} id admin unique ID.
- *
- * @apiSuccess {Object[]} admin adminObject
- * @apiSuccess {String} admin.password  password of the admin.
- * @apiSuccess {String} admin.email  email of the admin.
+ *@apiBody {String} password password of the admin
+ * @apiBody {String} email email of the admin
+ * @apiSuccess {String} admin the admin password & email updated
  */
 
 router.put(

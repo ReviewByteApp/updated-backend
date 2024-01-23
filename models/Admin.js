@@ -22,6 +22,12 @@ const adminSchema = mongoose.Schema({
     type: String,
     required: false,
   },
+  map: {
+    type: String,
+  },
+  phoneNumber: {
+    type: String,
+  },
   category: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "category",
@@ -33,11 +39,9 @@ const adminSchema = mongoose.Schema({
 
   reviewCount: {
     type: Number,
-    required: true,
   },
   reviewScore: {
     type: Number,
-    required: true,
   },
 
   createdAt: {
@@ -47,6 +51,25 @@ const adminSchema = mongoose.Schema({
   updatedAt: {
     type: Date,
     default: null, // Set the default value to null for the initial creation
+  },
+  website: {
+    type: String,
+  },
+  logo: {
+    type: String,
+  },
+  services: [
+    {
+      type: String,
+    },
+  ],
+  images: [
+    {
+      type: String,
+    },
+  ],
+  video: {
+    type: String,
   },
 });
 

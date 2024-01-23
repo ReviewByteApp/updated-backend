@@ -39,8 +39,9 @@ router.get(
  *
  *
  * @apiSuccess {Object[]} category categoryObject
- * @apiSuccess {String} category.name name of category
- * @apiSuccess {String} category.icon  icon of category
+ * @apiBody {String} category.name name of category
+ * @apiBody {String} category.icon icon of category
+ * @apiSuccess {String} message  category created
  */
 
 router.post(

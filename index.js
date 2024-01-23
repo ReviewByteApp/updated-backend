@@ -14,6 +14,7 @@ const AdminInfoRouter = require("./routers/adminInfo");
 const CompanyIntroRouter = require("./routers/companyIntro");
 
 const AdminContactRouter = require("./routers/adminContact");
+const AdminDescribeRouter = require("./routers/adminDescribe");
 
 const app = express();
 
@@ -26,10 +27,11 @@ app.use("/subcategory", SubcategoryRouter);
 app.use("/review", ReviewRouter);
 app.use("/customer", CustomerRouter);
 app.use("/customerAuth", CustomerAuthRouter);
-app.use("/adminInfo", AdminInfoRouter);
-app.use("/companyIntro", CompanyIntroRouter);
+app.use("/admin/adminInfo", AdminInfoRouter);
+app.use("/admin/companyIntro", CompanyIntroRouter);
 
-app.use("/adminContact", AdminContactRouter);
+app.use("/admin/adminContact", AdminContactRouter);
+app.use("/admin/adminDescribe", AdminDescribeRouter);
 
 app.use(error);
 

@@ -1,10 +1,12 @@
 const mongoose = require("mongoose");
 
 const CompanyIntroSchema = mongoose.Schema({
-  image: {
-    type: String,
-    required: false,
-  },
+  images: [
+    {
+      type: String,
+      required: false,
+    },
+  ],
   video: {
     type: String,
     required: false,

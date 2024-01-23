@@ -47,11 +47,12 @@ router.get(
  *@apiParam {objectId} id admin unique ID.
  *
  * @apiSuccess {Object[]} post postObject
- * @apiSuccess {String} post.title  title of the admin.
- * @apiSuccess {String} admin.description  description about admin.
- * @apiSuccess {String[]} post.images Array of image URLs
- * @apiSuccess {String} admin.video  video of the admin.
- * @apiSuccess {ObjectId} admin.admin admin ID associated with the Admin.
+ * @apiBody {String} post.title  title of the admin.
+ * @apiBody {String} admin.description  description about admin.
+ * @apiBody {String[]} post.images Array of image URLs
+ * @apiBody {String} admin.video  video of the admin.
+ * @apiBody {ObjectId} admin.admin admin ID associated with the Admin.
+ * @apiSuccess {String} message post created.
  */
 
 router.post(
@@ -116,11 +117,12 @@ router.post(
  *
  *@apiParam {objectId} id post unique ID.
  *
- * @apiSuccess {Object[]} post postObject
- * @apiSuccess {String} post.title  title of the post.
- * @apiSuccess {String} post.description  description about post.
- * @apiSuccess {String[]} post.images Array of image URLs
- * @apiSuccess {String} post.video  video of the post.
+
+ * @apiBody {String} post.title  title of the post.
+ * @apiBody {String} post.description  description about post.
+ * @apiBody {String[]} post.images Array of image URLs
+ * @apiBody {String} post.video  video of the post.
+ * @apiSuccess {String} message post updated
  */
 
 router.put(
